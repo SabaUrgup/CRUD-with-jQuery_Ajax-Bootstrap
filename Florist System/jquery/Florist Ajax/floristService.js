@@ -246,8 +246,3 @@ function getFCategory() {
         }
     })
 }
-
-// var personbirthdate = $('#upbirdthdate').val()
-//const..
-//birthdate : personbirthdate.split("T")[0]
-
