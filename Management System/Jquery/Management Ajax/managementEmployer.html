@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- import the Bootstrap which is a free front-end framework for faster and easier web development -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Employer List</title>
+</head>
+
+<body>
+    <div class="border border-top-0 border-4 p-5 ">
+        <div class="row g-3">
+            <!-- <div class="col-auto">
+            <input type="text" class="form-control" id="silinecekId">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-danger mb-3" onclick="deleteEmployers()" >Delete</button>
+        </div> -->
+            <div class="col-auto">
+                <button type="button" class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#addModal">Add
+                    New Employer</button>
+            </div>
+        </div>
+
+        <table id="liste2" class="table table-dark table-hover caption-top ">
+            <caption>LİST OF EMPLOYERS</caption>
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody id="liste2Tbody">
+
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"> Employer Post Form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="p-3 mb-2 text-dark" style="padding: 20px" ;>
+                                <p><strong> Employer Info: </strong></p><br>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Full Name:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="employerName"
+                                            placeholder="Enter Full Name" aria-describedby="inputGroupPrepend" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your full name.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Surname:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="employerSurname"
+                                            placeholder="Enter Surname" aria-describedby="inputGroupPrepend" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your surname.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Position:</label><br>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="employerPosition"
+                                            placeholder="Enter Position" aria-describedby="inputGroupPrepend"
+                                            required><br>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your position.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="addEmployer()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Update -->
+        <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"> Employer Update</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="p-3 mb-2 text-dark" style="padding: 20px" ;>
+                                <p><strong> Employer Info: </strong></p><br>
+
+                                <input hidden type="text" class="form-control" id="UemployerId">
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Full Name:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="UemployerName"
+                                            placeholder="Enter Full Name" aria-describedby="inputGroupPrepend" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your full name.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Surname:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="UemployerSurname"
+                                            placeholder="Enter Surname" aria-describedby="inputGroupPrepend" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your surname.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Position:</label><br>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="UemployerPosition"
+                                            placeholder="Enter Position" aria-describedby="inputGroupPrepend"
+                                            required><br>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your position.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="updateEmployer()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./managementService.js"></script>
+
+
+</html>
